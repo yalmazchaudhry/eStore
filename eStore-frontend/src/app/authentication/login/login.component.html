@@ -1,0 +1,83 @@
+<div class="row card d-flex flex-row my-5 shadow-lg border-0 mx-5">
+  <div
+    class="left col-12 col-md-6 d-flex flex-column align-items-center justify-content-center"
+  >
+    <div class="left_side">
+      <div class="d-flex flex-column align-items-center">
+        <div class="mb-3"><h1 class="text-white">Login</h1></div>
+        <div class="d-flex mb-5">
+          <a
+            href="#"
+            class="btn btn-lg mx-3 border rounded-circle d-flex align-items-center"
+          >
+            <fa-icon [icon]="faFacebook" class="fa-lg text-white"></fa-icon>
+          </a>
+          <a
+            href="#"
+            class="btn btn-lg mx-3 border rounded-circle d-flex align-items-center"
+          >
+            <fa-icon [icon]="faTwitter" class="fa-lg text-white"></fa-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="onLogin()"
+      class="d-flex flex-column w-75"
+      enctype="multipart/form-data"
+    >
+      <div class="my-1 form-group">
+        <label for="userEmail" class="form-label text-white"
+          >Email/User Name
+        </label>
+        <input
+          id="userEmailOrUserName"
+          placeholder="Email OR User name"
+          formControlName="userEmailorUserName"
+          class="form-control login_input"
+        />
+        <app-validations-errors
+          [control]="loginForm.get('userEmailorUserName')"
+        />
+      </div>
+
+      <div class="my-1 form-group">
+        <label for="userPassword" class="form-label text-white"
+          >Password
+        </label>
+        <input
+          type="password"
+          id="userPassword"
+          placeholder="Password"
+          formControlName="userPassword"
+          class="form-control login_input"
+        />
+        <app-validations-errors [control]="loginForm.get('userPassword')" />
+      </div>
+      <ng-container *ngIf="loginFailed"
+        ><small class="my-1 fw-bold text-danger d-flex align-self-center">{{
+          loginError
+        }}</small></ng-container
+      >
+      <button
+        type="submit"
+        [disabled]="loginForm.invalid"
+        class="btn mt-2 login_btn d-flex align-self-center fw-bold py-2 justify-content-center align-items-center btn-danger rounded-pill"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+
+  <div
+    class="right col-12 col-md-6 bg-danger text-center d-flex flex-column align-items-center justify-content-center"
+  >
+    <h3 class="text-white">Welcome to Angular Forms!</h3>
+    <p class="text-white w-75">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae sint
+      delectus debitis iste excepturi error nobis tempore veritatis illo quo
+      dolor dignissimos maiores sequi cupiditate, quas sit eligendi ut voluptas.
+    </p>
+  </div>
+</div>

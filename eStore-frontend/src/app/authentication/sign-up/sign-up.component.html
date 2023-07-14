@@ -1,0 +1,89 @@
+<div class="row card d-flex flex-row my-5 shadow-lg mx-5 border-0">
+  <div
+    class="left col-12 col-md-6 d-flex flex-column align-items-center justify-content-center"
+  >
+    <div class="left_side">
+      <div class="d-flex flex-column align-items-center">
+        <div class="mb-3"><h1 class="text-white">Sign Up</h1></div>
+      </div>
+    </div>
+    <form
+      [formGroup]="signUpForm"
+      (ngSubmit)="onSignUp()"
+      class="d-flex flex-column w-75"
+      enctype="multipart/form-data"
+    >
+      <div class="form-group my-1">
+        <label for="userName" class="form-label text-white"
+          >User Name
+          <fa-icon [icon]="faAsterik" class="fa-2xs text-danger"></fa-icon>
+        </label>
+        <input
+          class="form-control login_input"
+          type="text"
+          id="userName"
+          placeholder="User Name"
+          formControlName="userName"
+        />
+        <app-validations-errors [control]="signUpForm.get('userName')" />
+      </div>
+      <div class="my-1 form-group">
+        <label for="userEmail" class="form-label text-white"
+          >Email
+          <fa-icon [icon]="faAsterik" class="fa-2xs text-danger"></fa-icon
+        ></label>
+        <input
+          type="email"
+          id="userEmail"
+          placeholder="Email"
+          formControlName="userEmail"
+          class="form-control login_input"
+        />
+        <app-validations-errors [control]="signUpForm.get('userEmail')" />
+      </div>
+      <div class="my-1 form-group">
+        <label for="userPhone" class="form-label text-white">Phone</label>
+        <input
+          placeholder="Phone"
+          type="tel"
+          id="userPhone"
+          formControlName="userPhone"
+          class="form-control login_input"
+        />
+        <app-validations-errors [control]="signUpForm.get('userPhone')" />
+      </div>
+      <div class="my-1 form-group">
+        <label for="userPassword" class="form-label text-white"
+          >Password
+          <fa-icon [icon]="faAsterik" class="fa-2xs text-danger"></fa-icon
+        ></label>
+        <input
+          type="password"
+          id="userPassword"
+          placeholder="Password"
+          formControlName="userPassword"
+          class="form-control login_input"
+        />
+        <app-validations-errors [control]="signUpForm.get('userPassword')" />
+      </div>
+      <button
+        type="submit"
+        [disabled]="signUpForm.invalid"
+        class="btn mt-2 login_btn d-flex align-self-center fw-bold py-2 justify-content-center align-items-center btn-danger rounded-pill"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+
+  <div
+    class="right col-12 col-md-6 bg-danger text-center d-flex flex-column align-items-center justify-content-center"
+  >
+    <h3 class="text-white">Welcome to Angular Forms!</h3>
+    <p class="text-white w-75">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae sint
+      delectus debitis iste excepturi error nobis tempore veritatis illo quo
+      dolor dignissimos maiores sequi cupiditate, quas sit eligendi ut voluptas.
+    </p>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<!-- <div *ngIf="shouldDisplayError()" class="text-danger">
+  <small>{{ getErrorMessage() }}</small>
+</div> -->
+<ng-container *ngIf="shouldDisplayError()">
+  <small class="text-danger">{{ getErrorMessage() }}</small>
+</ng-container>

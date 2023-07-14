@@ -1,0 +1,17 @@
+.notification-container {
+  z-index: 10000;
+}
+
+.toast {
+  width: 350px;
+}
+
+.toast-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.toast-error {
+  background-color: #f8d7da;
+  color: #721c24;
+}

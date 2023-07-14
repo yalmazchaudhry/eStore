@@ -1,0 +1,261 @@
+<button
+  type="button"
+  id="editModalButton"
+  class="btn btn-primary d-none"
+  data-bs-toggle="modal"
+  data-bs-target="#editProductModal"
+>
+  Edit
+</button>
+
+<div
+  class="modal fade"
+  id="editProductModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Product</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editProductForm" enctype="multipart/form-data">
+          <div>
+            <label for="name" class="form-label">Product Name:</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              class="form-control"
+            />
+            <app-validations-errors [control]="editProductForm.get('name')" />
+          </div>
+          <div>
+            <label for="price" class="form-label">Price:</label>
+            <input
+              type="text"
+              id="price"
+              formControlName="price"
+              class="form-control"
+            />
+            <app-validations-errors [control]="editProductForm.get('price')" />
+          </div>
+          <div class="mb-3">
+            <label for="quantity" class="form-label">Quantity:</label>
+            <input
+              type="number"
+              id="quantity"
+              formControlName="quantity"
+              class="form-control"
+            />
+            <app-validations-errors
+              [control]="editProductForm.get('quantity')"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="barcode" class="form-label">Barcode:</label>
+            <input
+              type="text"
+              id="barcode"
+              formControlName="barcode"
+              class="form-control"
+            />
+            <app-validations-errors
+              [control]="editProductForm.get('barcode')"
+            />
+          </div>
+          <div class="position-relative" *ngIf="product?.image">
+            <img [src]="product.image" class="img-fluid" alt="Product Image" />
+            <button
+              (click)="removeImage()"
+              class="btn btn-link position-absolute top-0 end-0"
+            >
+              <fa-icon [icon]="faX" class="fa-xs text-danger"></fa-icon>
+            </button>
+          </div>
+          <div class="mb-3" *ngIf="!product?.image">
+            <label for="file" class="form-label">Image:</label>
+            <input
+              type="file"
+              id="file"
+              formControlName="file"
+              (change)="onFileSelected($event)"
+              class="form-control"
+              accept="image/*"
+            />
+            <app-validations-errors [control]="editProductForm.get('file')" />
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description:</label>
+            <textarea
+              title="Description"
+              formControlName="description"
+              class="form-control"
+              id="description"
+            ></textarea>
+            <app-validations-errors
+              [control]="editProductForm.get('description')"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          id="editModalClose"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="closeModal()"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          (click)="onEditProduct()"
+          [disabled]="editProductForm.invalid"
+          class="btn btn-primary"
+        >
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div
+  class="modal fade"
+  id="editProductModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="editProductModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content" *ngIf="product">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editProductModalLabel">
+          Edit Product
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      {{ editProductForm.invalid }}
+      {{ product?.image }}
+      <div class="modal-body">
+        <form [formGroup]="editProductForm" enctype="multipart/form-data">
+          <div>
+            <label for="name" class="form-label">Product Name:</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              class="form-control"
+            />
+            <app-validations-errors [control]="editProductForm.get('name')" />
+          </div>
+          <div>
+            <label for="price" class="form-label">Price:</label>
+            <input
+              type="text"
+              id="price"
+              formControlName="price"
+              class="form-control"
+            />
+            <app-validations-errors [control]="editProductForm.get('price')" />
+          </div>
+          <div class="mb-3">
+            <label for="quantity" class="form-label">Quantity:</label>
+            <input
+              type="number"
+              id="quantity"
+              formControlName="quantity"
+              class="form-control"
+            />
+            <app-validations-errors
+              [control]="editProductForm.get('quantity')"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="barcode" class="form-label">Barcode:</label>
+            <input
+              type="text"
+              id="barcode"
+              formControlName="barcode"
+              class="form-control"
+            />
+            <app-validations-errors
+              [control]="editProductForm.get('barcode')"
+            />
+          </div>
+          <div class="position-relative" *ngIf="product?.image">
+            <img [src]="product.image" class="img-fluid" alt="Product Image" />
+            <button
+              (click)="removeImage()"
+              class="btn btn-link position-absolute top-0 end-0"
+            >
+              <fa-icon [icon]="faX" class="fa-xs text-danger"></fa-icon>
+            </button>
+          </div>
+          <div class="mb-3" *ngIf="!product?.image">
+            <label for="file" class="form-label">Image:</label>
+            <input
+              type="file"
+              id="file"
+              formControlName="file"
+              (change)="onFileSelected($event)"
+              class="form-control"
+              accept="image/*"
+            />
+            <app-validations-errors [control]="editProductForm.get('file')" />
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description:</label>
+            <textarea
+              title="Description"
+              formControlName="description"
+              class="form-control"
+              id="description"
+            ></textarea>
+            <app-validations-errors
+              [control]="editProductForm.get('description')"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          id="editModalClose"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          (click)="onEditProduct()"
+          [disabled]="editProductForm.invalid"
+          class="btn btn-primary"
+        >
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>
+</div> -->

@@ -1,0 +1,67 @@
+<table
+  datatable
+  id="mytable"
+  [dtOptions]="dtOptions"
+  class="row-border hover w-100"
+></table>
+<ng-container *ngIf="isAdding">
+  <app-add-product
+    (closeModalEvent)="closeModal($event)"
+    [dataTableApi]="dataTableApi"
+  ></app-add-product>
+</ng-container>
+
+<ng-container *ngIf="isEditting">
+  <app-edit-product
+    [product]="product"
+    [dataTableApi]="dataTableApi"
+    (closeModalEvent)="closeModal($event)"
+  ></app-edit-product>
+</ng-container>
+<ng-container *ngIf="isDeleting">
+  <app-delete-product
+    [product]="product"
+    [dataTableApi]="dataTableApi"
+    (closeModalEvent)="closeModal($event)"
+  ></app-delete-product>
+</ng-container>
+<ng-container *ngIf="isViewing">
+  <app-view-product
+    [product]="product"
+    (closeModalEvent)="closeModal($event)"
+  ></app-view-product>
+</ng-container>
+
+<!-- <div class="container">
+  <div class="card m-5 p-3">
+    <div class="card-body">
+      <table
+        class="table table-bordered table-striped table-hover"
+        datatable
+        [dtOptions]="dtOptions"
+        [dtTrigger]="dtTrigger"
+      >
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Phone number</th>
+            <th>Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of allUsers">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.address.street }}, {{ user.address.city }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div> -->

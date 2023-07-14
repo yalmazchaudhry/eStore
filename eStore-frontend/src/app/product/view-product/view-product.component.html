@@ -1,0 +1,59 @@
+<!-- Modal -->
+<button
+  type="button"
+  id="viewModalButton"
+  class="btn btn-primary d-none"
+  data-bs-toggle="modal"
+  data-bs-target="#viewProductModal"
+>
+  View
+</button>
+<div
+  class="modal fade"
+  id="viewProductModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="editProductModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" *ngIf="product">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="viewProductModalLabel">
+          {{ product.name }}
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <img [src]="product.image" class="img-fluid" alt="product_image" />
+        <h5 class="mt-2">{{ product.name }}</h5>
+        <p>
+          {{ product.description }}
+        </p>
+        <div class="d-flex justify-content-between">
+          <p class="fw-bold">{{ product.price }}$</p>
+          <p>{{ product.barcode }}</p>
+        </div>
+        <!-- add to cart btn etc -->
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          id="viewModalClose"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="closeModal()"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
